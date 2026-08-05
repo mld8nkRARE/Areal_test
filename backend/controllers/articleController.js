@@ -39,7 +39,13 @@ async function getArticleById(req, res){
 
 async function getAllArticles(req, res){
     try{
-        const articles = await Article.findAll();
+        const articles = await Article.findAll(
+        {
+            order: [
+                ['createdAt', 'DESC'],
+                ['id', 'DESC'],
+            ],
+        });
         return res.status(200).json(articles);
 
     }
