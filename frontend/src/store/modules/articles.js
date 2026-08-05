@@ -63,6 +63,7 @@ export default {
         commit('SET_CURRENT', data)
       }
       catch (error) {
+        commit('SET_CURRENT', null)
         commit('SET_ERROR', error.response?.data?.error || error.message)
       }
       finally {
