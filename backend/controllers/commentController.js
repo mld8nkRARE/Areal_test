@@ -50,7 +50,7 @@ async function getAllComments(req, res){
     try{
         const {articleId} = req.params;
 
-        if (!Number.isInteger(Number(id)) || !Number.isInteger(Number(articleId))) 
+        if ( !Number.isInteger(Number(articleId))) 
             return res.status(400).json({ error: "ID должен быть целым числом" });
 
         const article = await Article.findByPk(articleId);
@@ -60,7 +60,8 @@ async function getAllComments(req, res){
         const comments = await Comment.findAll({
             where: {
                 articleId
-            }
+            },
+            order: [['createdAt', 'DESC']]
         });
 
         return res.status(200).json(comments);
