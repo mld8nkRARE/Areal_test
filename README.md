@@ -1,8 +1,9 @@
 # Тестовое задание: Статьи
 
 ### Backend доступен на `http://localhost:3000`.
+npm run dev
 ### Frontend доступен на `http://localhost:5173`.
-
+npm run dev
 ### Статьи
 
 | Метод | Путь                        | Тело                  | Описание             | Коды |
