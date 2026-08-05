@@ -23,8 +23,8 @@ async function createComment(req, res){
 async function getCommentById(req, res){
     try{
         const {articleId, id} = req.params;
-        if (!Number.isInteger(id) || id <= 0 || !Number.isInteger(articleId) || articleId <= 0) 
-            return res.status(400).json({ error: "ID должен быть положительным целым числом" });
+        if (!Number.isInteger(Number(id)) || !Number.isInteger(Number(articleId))) 
+            return res.status(400).json({ error: "ID должен быть целым числом" });
         const article = await Article.findByPk(articleId);
         if(!article)
             return res.status(404).json({error: "Статья не найдена"});
@@ -50,8 +50,8 @@ async function getAllComments(req, res){
     try{
         const {articleId} = req.params;
 
-        if (!Number.isInteger(id) || id <= 0) 
-            return res.status(400).json({ error: "ID должен быть положительным целым числом" });
+        if (!Number.isInteger(Number(id)) || !Number.isInteger(Number(articleId))) 
+            return res.status(400).json({ error: "ID должен быть целым числом" });
 
         const article = await Article.findByPk(articleId);
         if(!article)
@@ -74,8 +74,8 @@ async function updateCommentById(req, res){
     try{
         const {articleId, id} = req.params;
 
-        if (!Number.isInteger(id) || id <= 0 || !Number.isInteger(articleId) || articleId <= 0) 
-            return res.status(400).json({ error: "ID должен быть положительным целым числом" });
+        if (!Number.isInteger(Number(id)) || !Number.isInteger(Number(articleId))) 
+            return res.status(400).json({ error: "ID должен быть целым числом" });
 
         const {content} = req.body || {};
 
@@ -108,8 +108,8 @@ async function deleteCommentById(req, res){
     try{
         const {articleId, id} = req.params;
 
-        if (!Number.isInteger(id) || id <= 0 || !Number.isInteger(articleId) || articleId <= 0) 
-            return res.status(400).json({ error: "ID должен быть положительным целым числом" });
+        if (!Number.isInteger(Number(id)) || !Number.isInteger(Number(articleId))) 
+            return res.status(400).json({ error: "ID должен быть целым числом" });
         
         const article = await Article.findByPk(articleId);
         if(!article)
