@@ -22,8 +22,8 @@ async function createArticle(req, res){
 async function getArticleById(req, res){
     try{
         const {id} = req.params;
-        if (!Number.isInteger(id) || id <= 0) 
-            return res.status(400).json({ error: "ID должен быть положительным целым числом" });
+        if (!Number.isInteger(Number(id))) 
+            return res.status(400).json({ error: "ID должен быть целым числом" });
 
         const article = await Article.findByPk(id);
 
@@ -51,8 +51,8 @@ async function getAllArticles(req, res){
 async function updateArticleById(req, res){
     try{
         const {id} = req.params;
-        if (!Number.isInteger(id) || id <= 0) 
-            return res.status(400).json({ error: "ID должен быть положительным целым числом" });
+        if (!Number.isInteger(Number(id))) 
+            return res.status(400).json({ error: "ID должен быть целым числом" });
 
         const {title,content} = req.body
         const article = await Article.findByPk(id);
@@ -70,8 +70,8 @@ async function updateArticleById(req, res){
 async function deleteArticleById(req, res){
     try{
         const {id} = req.params;
-        if (!Number.isInteger(id) || id <= 0) 
-            return res.status(400).json({ error: "ID должен быть положительным целым числом" });
+        if (!Number.isInteger(Number(id))) 
+            return res.status(400).json({ error: "ID должен быть целым числом" });
         const article = await Article.findByPk(id);
 
         if(!article)
